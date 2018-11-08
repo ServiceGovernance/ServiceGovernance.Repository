@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using ServiceGovernance.Repository.Configuration;
+using ServiceGovernance.Repository.Endpoints;
+using ServiceGovernance.Repository.Services;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -54,10 +56,8 @@ namespace Microsoft.Extensions.DependencyInjection
             options.Validate();
 
             services.AddSingleton(options);
-            //services.AddScoped<IRegistrationTokenProvider, RegistrationTokenProvider>();
-            //services.AddScoped<IServiceRepository, ServiceRegistry>();
-            //services.AddTransient<RegisterEndpoint>();
-            //services.AddTransient<ServiceEndpoint>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddTransient<ApiEndpoint>();
 
             return new ServiceRepositoryBuilder(services);
         }

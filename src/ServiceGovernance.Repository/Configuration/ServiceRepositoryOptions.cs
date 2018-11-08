@@ -10,7 +10,7 @@
         /// </summary>
         public void Validate()
         {
-            
+
         }
     }
 }

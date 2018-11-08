@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -11,12 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="ServiceGovernance.Registry.Agent" Version="0.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ServiceGovernance.Repository.Agent">
-      <HintPath>..\..\..\ServiceGovernance.Repository.Agent\src\ServiceGovernance.Repository.Agent\bin\Debug\netstandard2.0\ServiceGovernance.Repository.Agent.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <PackageReference Include="ServiceGovernance.Repository.Agent.SwaggerV3" Version="*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="3.0.0" />
+  </ItemGroup>  
 
 </Project>

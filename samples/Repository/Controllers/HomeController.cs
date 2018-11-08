@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Repository.Models;
+using ServiceGovernance.Registry.Services;
 using ServiceGovernance.Repository.Services;
 using System;
 using System.Diagnostics;

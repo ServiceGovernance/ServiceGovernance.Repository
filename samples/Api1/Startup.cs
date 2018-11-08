@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api1
 {
@@ -26,6 +27,12 @@ namespace Api1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
             services.AddServiceRegistryAgent(options => {
                 options.Registry = new Uri("http://localhost:5005");
                 options.ServiceIdentifier = "Api1";
@@ -53,6 +60,7 @@ namespace Api1
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
             app.UseServiceRegistryAgent();
             app.UseServiceRepositoryAgent();
         }

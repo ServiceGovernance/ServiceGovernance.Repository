@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ServiceGovernance.Repository.Endpoints;
+using ServiceGovernance.Repository.Services;
+using ServiceGovernance.Repository.Stores;
 using System;
 
 namespace Microsoft.AspNetCore.Builder
@@ -16,15 +19,14 @@ namespace Microsoft.AspNetCore.Builder
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseServiceRepositoryy(this IApplicationBuilder app)
+        public static IApplicationBuilder UseServiceRepository(this IApplicationBuilder app)
         {
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
 
             app.Validate();
 
-            //app.Map(RegisterEndpoint.Path, b => b.UseMiddleware<RegisterEndpoint>());
-            //app.Map(ServiceEndpoint.Path, b => b.UseMiddleware<ServiceEndpoint>());
+            app.Map(ApiEndpoint.Path, b => b.UseMiddleware<ApiEndpoint>());
 
             return app;
         }
@@ -42,11 +44,13 @@ namespace Microsoft.AspNetCore.Builder
             {
                 var serviceProvider = scope.ServiceProvider;
 
-                //TestService(serviceProvider, typeof(IServiceStore), logger, "No storage mechanism for services specified. Use the 'AddInMemoryServices' extension method to register a development version or provide an implementation for 'IServiceStore'.");
+                serviceProvider.TestService(typeof(IApiStore), logger, $"No storage mechanism for apis specified. Use the '{nameof(ServiceRepositoryBuilderExtensionsInMemory.AddInMemoryApiStore)}' extension method to register a development version or provide an implementation for '{nameof(IApiStore)}'.");
+                serviceProvider.TestService(typeof(IServiceRepository), logger, $"No storage mechanism for apis specified. Use the '{nameof(ServiceRepositoryBuilderExtensionsInMemory.AddInMemoryApiStore)}' extension method to register a development version or provide an implementation for '{nameof(IApiStore)}'.");
+
             }
         }
 
-        internal static object TestService(IServiceProvider serviceProvider, Type service, ILogger logger, string message)
+        internal static object TestService(this IServiceProvider serviceProvider, Type service, ILogger logger, string message)
         {
             var appService = serviceProvider.GetService(service);
 
