@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Services";
+}
+@model IEnumerable<ServiceGovernance.Registry.Models.Service>
+@using System.Linq
+
+<h3>Registered Services</h3>
+
+@foreach (var service in Model)
+{
+
+    <h4>@service.DisplayName (@service.ServiceId)</h4>
+    @Html.Raw(string.Join(", ", service.PublicUrls.Select(url => url.ToString())))
+
+    <br />
+    <b>Endpoints:</b>
+    <ul>
+        @foreach (var endpoint in service.Endpoints)
+        {
+            <li>@endpoint</li>
+        }
+    </ul>
+
+    <b>Ip addresses:</b>
+    <ul>
+        @foreach (var address in service.IpAddresses)
+        {
+            <li>@address</li>
+        }
+
+    </ul>
+}
