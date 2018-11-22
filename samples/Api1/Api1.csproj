@@ -11,8 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="ServiceGovernance.Registry.Agent" Version="0.2.1" />
-    <PackageReference Include="ServiceGovernance.Repository.Agent.SwaggerV3" Version="*" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="3.0.0" />
+    <PackageReference Include="ServiceGovernance.Repository.Agent.SwaggerV3" Version="0.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
   </ItemGroup>  
 
 </Project>
